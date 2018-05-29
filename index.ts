@@ -4,6 +4,10 @@ import asyncChunks = require('async-chunks')
 
 const reBreak = /\r?\n/
 
+if (typeof Symbol.asyncIterator === 'undefined') {
+  Object.assign(Symbol, { asyncIterator: Symbol.for('Symbol.asyncIterator') })
+}
+
 export = async function * asyncLines (stream: Readable) {
   let buffer = ''
 
